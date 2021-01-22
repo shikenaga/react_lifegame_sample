@@ -35,7 +35,7 @@
             }
         ],
         "react/destructuring-assignment": [
-            "enabled",
+            0,
             "always"
         ],
         "react/prop-types": "off",
