@@ -1,11 +1,5 @@
-// eslint-disable-next-line no-use-before-define
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-function App() {
-  return (
-    <div>Hello React!</div>
-  );
-}
+import App from './App';
 
 ReactDOM.render(<App />, document.getElementById('root'));
