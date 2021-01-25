@@ -7,7 +7,7 @@ export default class LifeGame {
 
   readonly width;
 
-  constructor(height: number, width: number, ...cells: Cell[]) {
+  constructor(height: number, width: number, cells: Cell[]) {
     this.height = height;
     this.width = width;
     this.addCells(cells);
