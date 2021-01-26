@@ -17,6 +17,7 @@
     },
     "plugins": [
         "react",
+        "react-hooks",
         "@typescript-eslint"
     ],
     "rules": {
@@ -29,6 +30,8 @@
                 "allowAfterSuper": true
             }
         ],
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "warn",
         "@typescript-eslint/no-use-before-define": [
             "error"
         ],
