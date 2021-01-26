@@ -1,9 +1,9 @@
-// import React, { useState, useEffect } from 'react';
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import CellsTable from './cellsTable/CellsTable';
 import LifeGame from '../helpers/lifeGame';
 
 export default function MainBlock() {
+  const [lifeGameIsProgressing, setLifeGameIsProgressing] = useState(true);
   const [lifeGame] = useState(
     new LifeGame(
       10,
@@ -29,8 +29,30 @@ export default function MainBlock() {
     ),
   );
 
-  // useEffect(() => {
-  //   setInterval(() => { window.console.log('hello!'); }, 1000);
-  // });
-  return <CellsTable lifGame={lifeGame} />;
+  const intervalRef = useRef(null);
+
+  const handleClickStopButton = (() => {
+    setLifeGameIsProgressing(false);
+    if (intervalRef.current === null) {
+      intervalRef.current = setInterval(() => {
+        window.console.log('hi, in start!');
+      }, 100);
+    }
+  });
+  const handleClickStartButton = (() => {
+    setLifeGameIsProgressing(true);
+    if (intervalRef.current !== null) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+  });
+
+  const playbackButton = ((running: boolean) => (running ? <button type="button" onClick={handleClickStopButton}>stop</button> : <button type="button" onClick={handleClickStartButton}>start</button>));
+
+  return (
+    <div>
+      <CellsTable lifGame={lifeGame} />
+      {playbackButton(lifeGameIsProgressing)}
+    </div>
+  );
 }
