@@ -47,7 +47,12 @@ export default function MainBlock() {
     }
   });
 
-  const playbackButton = ((running: boolean) => (running ? <button type="button" onClick={handleClickStopButton}>stop</button> : <button type="button" onClick={handleClickStartButton}>start</button>));
+  const playbackButton = (
+    (running: boolean) => (
+      running ? <button type="button" onClick={handleClickStopButton}>stop</button>
+        : <button type="button" onClick={handleClickStartButton}>start</button>
+    )
+  );
 
   return (
     <div>
