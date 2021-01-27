@@ -1,5 +1,4 @@
 import React, { useState, useRef } from 'react';
-import CellsTable from './cellsTable/CellsTable';
 import LifeGame from '../helpers/lifeGame';
 import CellButton from './cellsButtons/cellButton';
 import CellButtons from './cellsButtons/cellButtons';
@@ -58,11 +57,10 @@ export default function MainBlock() {
 
   return (
     <div>
-      <CellsTable lifGame={lifeGame} />
-      {playbackButton(lifeGameIsProgressing)}
       <CellButtons lifeGame={lifeGame}>
         <CellButton onClick={(coordinate) => window.console.log(coordinate)} />
       </CellButtons>
+      {playbackButton(lifeGameIsProgressing)}
     </div>
   );
 }
