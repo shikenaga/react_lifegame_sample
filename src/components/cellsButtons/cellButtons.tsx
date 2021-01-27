@@ -16,11 +16,14 @@ const CellButtons: React.FC<Props> = ({ lifeGame, children }) => {
 
   const cellButtons = lifeGameField.map((row, y) => {
     const yIndex = `${y}`;
-    const cellsRow = row.map((cell, x) => {
+    const cellsRow = row.map((buttonElement, x) => {
       const xIndex = `${x}`;
       return (
-        cell ? React.cloneElement(children, { key: xIndex, coordinate: { x, y }, className: 'living' })
-          : React.cloneElement(children, { key: xIndex, coordinate: { x, y } })
+        React.cloneElement(children, {
+          key: xIndex,
+          coordinate: { x, y },
+          buttonElement,
+        })
       );
     });
     return <div key={yIndex}>{cellsRow}</div>;

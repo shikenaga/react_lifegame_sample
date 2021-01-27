@@ -58,7 +58,12 @@ export default function MainBlock() {
   return (
     <div>
       <CellButtons lifeGame={lifeGame}>
-        <CellButton onClick={(coordinate) => window.console.log(coordinate)} />
+        <CellButton
+          onClick={(coordinate) => window.console.log(coordinate)}
+          setClassName={(cell: boolean) => (cell ? 'living' : '')}
+          // eslint-disable-next-line no-unused-vars
+          setText={(_: any) => 'o'}
+        />
       </CellButtons>
       {playbackButton(lifeGameIsProgressing)}
     </div>
