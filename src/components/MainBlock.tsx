@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import LifeGame from '../helpers/lifeGame';
+import LifeGame from '../../lib/lifeGame/lifeGame';
 import CellButton from './cellsButtons/cellButton';
 import CellButtons from './cellsButtons/cellButtons';
 

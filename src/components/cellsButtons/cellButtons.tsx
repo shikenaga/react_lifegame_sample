@@ -1,5 +1,5 @@
 import React from 'react';
-import LifeGame from '../../helpers/lifeGame';
+import LifeGame from '../../../lib/lifeGame/lifeGame';
 
 type Props = {
   lifeGame: LifeGame,
