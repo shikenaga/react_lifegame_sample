@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import LifeGame from '../../lib/lifeGame/lifeGame';
 import CellButton from './cellsButtons/cellButton';
 import CellButtons from './cellsButtons/cellButtons';
+import lifeGameToButtonsField from '../helpers/lifeGameToButtonsField';
 
 export default function MainBlock() {
   const [lifeGameIsProgressing, setLifeGameIsProgressing] = useState(true);
@@ -55,9 +56,11 @@ export default function MainBlock() {
     )
   );
 
+  const lifeGameField = lifeGameToButtonsField(lifeGame);
+
   return (
     <div>
-      <CellButtons lifeGame={lifeGame}>
+      <CellButtons buttonsField={lifeGameField}>
         <CellButton
           onClick={(coordinate) => window.console.log(coordinate)}
           setClassName={(cell: boolean) => (cell ? 'living' : '')}

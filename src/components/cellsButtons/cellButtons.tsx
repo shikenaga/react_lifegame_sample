@@ -1,20 +1,12 @@
 import React from 'react';
-import LifeGame from '../../../lib/lifeGame/lifeGame';
 
 type Props = {
-  lifeGame: LifeGame,
+  buttonsField: any[][],
   children: React.ReactElement
 }
 
-const CellButtons: React.FC<Props> = ({ lifeGame, children }) => {
-  const lifeGameField: boolean[][] = Array(lifeGame.height)
-    .fill(null)
-    .map(() => Array(lifeGame.width).fill(false));
-  lifeGame.cells.forEach((cell) => {
-    lifeGameField[cell.y].splice(cell.x, 1, true);
-  });
-
-  const cellButtons = lifeGameField.map((row, y) => {
+const CellButtons: React.FC<Props> = ({ buttonsField, children }) => {
+  const cellButtons = buttonsField.map((row, y) => {
     const yIndex = `${y}`;
     const cellsRow = row.map((buttonElement, x) => {
       const xIndex = `${x}`;
