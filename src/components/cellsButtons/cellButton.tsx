@@ -2,12 +2,12 @@ import React from 'react';
 
 type Props = {
   coordinate: { x: number, y: number },
-  foo: string
+  className: string,
   onClick: Function
 }
 
-const CellButton: React.FC<Props> = ({ coordinate, foo, onClick }) => (
-  <button type="button" onClick={() => onClick(coordinate)}>{foo}</button>
+const CellButton: React.FC<Props> = ({ coordinate, className, onClick }) => (
+  <button type="button" className={className} onClick={() => onClick(coordinate)}>0</button>
 );
 
 export default CellButton;
