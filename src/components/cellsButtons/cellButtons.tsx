@@ -18,9 +18,9 @@ const CellButtons: React.FC<Props> = ({ lifeGame, children }) => {
     const yIndex = `${y}`;
     const cellsRow = row.map((cell, x) => {
       const xIndex = `${x}`;
-      const seqIndex = y * lifeGame.width + x;
       return (
-        React.cloneElement(children, { foo: seqIndex, key: xIndex })
+        cell ? React.cloneElement(children, { key: xIndex, coordinate: { x, y }, foo: 'o' })
+          : React.cloneElement(children, { key: xIndex, coordinate: { x, y }, foo: 'x' })
       );
     });
     return <div key={yIndex}>{cellsRow}</div>;

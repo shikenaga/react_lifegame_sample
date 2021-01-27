@@ -61,7 +61,7 @@ export default function MainBlock() {
       <CellsTable lifGame={lifeGame} />
       {playbackButton(lifeGameIsProgressing)}
       <CellButtons lifeGame={lifeGame}>
-        <CellButton />
+        <CellButton onClick={(coordinate) => window.console.log(coordinate)} />
       </CellButtons>
     </div>
   );
