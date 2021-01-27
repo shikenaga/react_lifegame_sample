@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import LifeGame from '../../lib/lifeGame/lifeGame';
-import CellButton from './cellsButtons/cellButton';
-import CellButtons from './cellsButtons/cellButtons';
+import FieldButton from './buttonsField/fieldButton';
+import ButtonsField from './buttonsField/buttonsField';
 import lifeGameToButtonsField from '../helpers/lifeGameToButtonsField';
 
 export default function MainBlock() {
@@ -60,14 +60,14 @@ export default function MainBlock() {
 
   return (
     <div>
-      <CellButtons buttonsField={lifeGameField}>
-        <CellButton
+      <ButtonsField buttonsField={lifeGameField}>
+        <FieldButton
           onClick={(coordinate) => window.console.log(coordinate)}
           setClassName={(cell: boolean) => (cell ? 'living' : '')}
           // eslint-disable-next-line no-unused-vars
           setText={(_: any) => 'o'}
         />
-      </CellButtons>
+      </ButtonsField>
       {playbackButton(lifeGameIsProgressing)}
     </div>
   );
