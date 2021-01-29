@@ -41,8 +41,6 @@ export default class LifeGame {
       return isEmpty && (liveneighbs === 3);
     }).filter((elm, index, self) => self.indexOf(elm) === index));
     return survivors.concat(births);
-    // this._cells = survivors.concat(births);
-    // return this._cells;
   }
 
   private isAlive(cell: Cell): boolean {
@@ -58,7 +56,7 @@ export default class LifeGame {
       { x: cell.x - 1, y: cell.y - 1 }, { x: cell.x, y: cell.y + 1 },
       { x: cell.x + 1, y: cell.y - 1 }, { x: cell.x - 1, y: cell.y },
       { x: cell.x + 1, y: cell.y }, { x: cell.x - 1, y: cell.y + 1 },
-      { x: cell.x, y: cell.y + 1 }, { x: cell.x + 1, y: cell.y + 1 },
+      { x: cell.x, y: cell.y - 1 }, { x: cell.x + 1, y: cell.y + 1 },
     ).filter((neighbCell) => (
       neighbCell.x >= 0 && neighbCell.x < this.width
       && neighbCell.y >= 0 && neighbCell.y < this.height

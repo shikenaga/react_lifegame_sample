@@ -6,6 +6,13 @@ import lifeGameToButtonsField from '../helpers/lifeGameToButtonsField';
 
 export default function MainBlock() {
   const [lifeGameIsProgressing, setLifeGameIsProgressing] = useState(true);
+  // const data2 = [
+  //   { x: 1, y: 2 },
+  //   { x: 2, y: 3 },
+  //   { x: 3, y: 1 },
+  //   { x: 3, y: 2 },
+  //   { x: 3, y: 3 },
+  // ];
   const [lifeGame, setLifeGame] = useState(
     new LifeGame(
       10,
@@ -73,6 +80,7 @@ export default function MainBlock() {
         type="button"
         onClick={() => {
           window.console.log('test');
+          window.console.log(lifeGame.nextGen());
           setLifeGame(new LifeGame(10, 10, lifeGame.nextGen()));
         }}
       >
