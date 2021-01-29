@@ -17,9 +17,8 @@ export default class LifeGame {
     return this._cells;
   }
 
-  // wip
   addCell(cell: Cell): Cell[] {
-    this._cells.push(cell);
+    if (this.isEmpty(cell)) this._cells.push(cell);
     return this._cells;
   }
 
@@ -30,8 +29,43 @@ export default class LifeGame {
     return this._cells;
   }
 
-  // wip
   nextGen(): Cell[] {
-    return this._cells;
+    const survivors = this._cells.filter((cell) => {
+      const liveneighbs = this.liveneighbs(cell);
+      return liveneighbs === 2 || liveneighbs === 3;
+    });
+
+    const births = this._cells.flatMap((cell) => this.neighbs(cell).filter((arroundCell) => {
+      const isEmpty = this.isEmpty(arroundCell);
+      const liveneighbs = this.liveneighbs(arroundCell);
+      return isEmpty && (liveneighbs === 3);
+    }).filter((elm, index, self) => self.indexOf(elm) === index));
+    return survivors.concat(births);
+    // this._cells = survivors.concat(births);
+    // return this._cells;
+  }
+
+  private isAlive(cell: Cell): boolean {
+    return this._cells.some((innerCell) => innerCell.x === cell.x && innerCell.y === cell.y);
+  }
+
+  private isEmpty(cell: Cell): boolean {
+    return !this.isAlive(cell);
+  }
+
+  private neighbs(cell: Cell): Cell[] {
+    return Array.of(
+      { x: cell.x - 1, y: cell.y - 1 }, { x: cell.x, y: cell.y + 1 },
+      { x: cell.x + 1, y: cell.y - 1 }, { x: cell.x - 1, y: cell.y },
+      { x: cell.x + 1, y: cell.y }, { x: cell.x - 1, y: cell.y + 1 },
+      { x: cell.x, y: cell.y + 1 }, { x: cell.x + 1, y: cell.y + 1 },
+    ).filter((neighbCell) => (
+      neighbCell.x >= 0 && neighbCell.x < this.width
+      && neighbCell.y >= 0 && neighbCell.y < this.height
+    ));
+  }
+
+  private liveneighbs(cell: Cell): number {
+    return this.neighbs(cell).filter((neighbCell) => this.isAlive(neighbCell)).length;
   }
 }

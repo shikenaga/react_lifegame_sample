@@ -6,7 +6,7 @@ import lifeGameToButtonsField from '../helpers/lifeGameToButtonsField';
 
 export default function MainBlock() {
   const [lifeGameIsProgressing, setLifeGameIsProgressing] = useState(true);
-  const [lifeGame] = useState(
+  const [lifeGame, setLifeGame] = useState(
     new LifeGame(
       10,
       10,
@@ -69,6 +69,16 @@ export default function MainBlock() {
         />
       </ButtonsField>
       {playbackButton(lifeGameIsProgressing)}
+      <button
+        type="button"
+        onClick={() => {
+          window.console.log('test');
+          setLifeGame(new LifeGame(10, 10, lifeGame.nextGen()));
+        }}
+      >
+        test
+
+      </button>
     </div>
   );
 }
