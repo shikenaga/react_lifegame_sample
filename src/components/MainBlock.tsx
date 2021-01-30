@@ -67,7 +67,9 @@ export default function MainBlock() {
       <ButtonsField buttonsField={lifeGameField}>
         <FieldButton
           onClick={(coordinate) => {
-            setLifeGame((pre) => new LifeGame(10, 10, pre.reverseCell(coordinate)));
+            if (lifeGameIsProgressing) {
+              setLifeGame((pre) => new LifeGame(10, 10, pre.reverseCell(coordinate)));
+            }
           }}
           setClassName={(cell: boolean) => (cell ? 'living' : '')}
           // eslint-disable-next-line no-unused-vars
