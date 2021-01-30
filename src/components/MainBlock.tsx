@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import LifeGame from '../../lib/lifeGame/lifeGame';
 import FieldButton from './buttonsField/fieldButton';
 import ButtonsField from './buttonsField/buttonsField';
@@ -6,13 +6,6 @@ import lifeGameToButtonsField from '../helpers/lifeGameToButtonsField';
 
 export default function MainBlock() {
   const [lifeGameIsProgressing, setLifeGameIsProgressing] = useState(true);
-  // const data2 = [
-  //   { x: 1, y: 2 },
-  //   { x: 2, y: 3 },
-  //   { x: 3, y: 1 },
-  //   { x: 3, y: 2 },
-  //   { x: 3, y: 3 },
-  // ];
   const [lifeGame, setLifeGame] = useState(
     new LifeGame(
       10,
@@ -38,17 +31,23 @@ export default function MainBlock() {
     ),
   );
 
+  const [lifeGameField, setLifeGameField] = useState(lifeGameToButtonsField(lifeGame));
+
+  useEffect(() => {
+    setLifeGameField(() => lifeGameToButtonsField(lifeGame));
+  }, [lifeGame]);
+
   const intervalRef = useRef(null);
 
-  const handleClickStopButton = (() => {
+  const handleClickStartButton = (() => {
     setLifeGameIsProgressing(false);
     if (intervalRef.current === null) {
       intervalRef.current = setInterval(() => {
-        window.console.log('hi, in start!');
+        setLifeGame((lifeGame2) => new LifeGame(10, 10, lifeGame2.nextGen()));
       }, 100);
     }
   });
-  const handleClickStartButton = (() => {
+  const handleClickStopButton = (() => {
     setLifeGameIsProgressing(true);
     if (intervalRef.current !== null) {
       clearInterval(intervalRef.current);
@@ -58,12 +57,10 @@ export default function MainBlock() {
 
   const playbackButton = (
     (running: boolean) => (
-      running ? <button type="button" onClick={handleClickStopButton}>stop</button>
-        : <button type="button" onClick={handleClickStartButton}>start</button>
+      running ? <button type="button" onClick={handleClickStartButton}>start</button>
+        : <button type="button" onClick={handleClickStopButton}>stop</button>
     )
   );
-
-  const lifeGameField = lifeGameToButtonsField(lifeGame);
 
   return (
     <div>
@@ -79,13 +76,10 @@ export default function MainBlock() {
       <button
         type="button"
         onClick={() => {
-          window.console.log('test');
-          window.console.log(lifeGame.nextGen());
           setLifeGame(new LifeGame(10, 10, lifeGame.nextGen()));
         }}
       >
         test
-
       </button>
     </div>
   );
