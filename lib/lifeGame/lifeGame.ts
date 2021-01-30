@@ -17,12 +17,15 @@ export default class LifeGame {
     return this._cells;
   }
 
-  // wip
   reverseCell(cell: Cell): Cell[] {
-    if (this.isEmpty(cell)) {
-      this._cells = this._cells.concat(cell);
-    } else {
-      this._cells = this._cells.filter((pre) => !(pre.x === cell.x && pre.y === cell.y));
+    if (cell.x >= 0 && cell.x < this.width
+      && cell.y >= 0 && cell.y < this.height
+    ) {
+      if (this.isEmpty(cell)) {
+        this._cells = this._cells.concat(cell);
+      } else {
+        this._cells = this._cells.filter((pre) => !(pre.x === cell.x && pre.y === cell.y));
+      }
     }
     return this._cells;
   }
