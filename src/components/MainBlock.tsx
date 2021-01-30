@@ -44,7 +44,7 @@ export default function MainBlock() {
     if (intervalRef.current === null) {
       intervalRef.current = setInterval(() => {
         setLifeGame((lifeGame2) => new LifeGame(10, 10, lifeGame2.nextGen()));
-      }, 100);
+      }, 1000);
     }
   });
   const handleClickStopButton = (() => {
@@ -76,7 +76,7 @@ export default function MainBlock() {
       <button
         type="button"
         onClick={() => {
-          setLifeGame(new LifeGame(10, 10, lifeGame.nextGen()));
+          setLifeGame((lifeGame2) => new LifeGame(10, 10, lifeGame2.nextGen()));
         }}
       >
         test
