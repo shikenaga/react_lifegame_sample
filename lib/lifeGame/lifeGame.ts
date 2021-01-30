@@ -17,14 +17,19 @@ export default class LifeGame {
     return this._cells;
   }
 
-  addCell(cell: Cell): Cell[] {
-    if (this.isEmpty(cell)) this._cells.push(cell);
+  // wip
+  reverseCell(cell: Cell): Cell[] {
+    if (this.isEmpty(cell)) {
+      this._cells = this._cells.concat(cell);
+    } else {
+      this._cells = this._cells.filter((pre) => !(pre.x === cell.x && pre.y === cell.y));
+    }
     return this._cells;
   }
 
   addCells(cells: Cell[]): Cell[] {
     cells.forEach((cell) => {
-      this.addCell(cell);
+      this.reverseCell(cell);
     });
     return this._cells;
   }
