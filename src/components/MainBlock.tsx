@@ -43,7 +43,7 @@ export default function MainBlock() {
     setLifeGameIsProgressing(false);
     if (intervalRef.current === null) {
       intervalRef.current = setInterval(() => {
-        setLifeGame((lifeGame2) => new LifeGame(10, 10, lifeGame2.nextGen()));
+        setLifeGame((pre) => new LifeGame(10, 10, pre.nextGen()));
       }, 1000);
     }
   });
@@ -76,7 +76,7 @@ export default function MainBlock() {
       <button
         type="button"
         onClick={() => {
-          setLifeGame((lifeGame2) => new LifeGame(10, 10, lifeGame2.nextGen()));
+          setLifeGame((pre) => new LifeGame(10, 10, pre.nextGen()));
         }}
       >
         test
